@@ -1,0 +1,95 @@
+.calc{
+    border-radius: 30px;
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    color: white;
+    height: 174.1mm;
+    width: 235.6mm;
+}
+.operacoes{
+    overflow: hidden;
+    margin-top: 30px;
+    border-radius: 30px;
+    color: gray;
+    background-color: black;
+    width: 850px;
+    padding: 20px;
+    font-size: 2rem;
+    text-align: right;
+    border: none;
+}
+.visor{
+    overflow: hidden;
+    margin-top: -25px;
+    border-radius: 30px;
+    color: white;
+    background-color: black;
+    width: 850px;
+    padding: 20px;
+    font-size: 5rem;
+    text-align: right;
+    border: none;
+}
+body{
+    user-select:none;
+    background-color: #333333;
+}
+#senos{
+    font-size: 15px;
+}
+#rad{
+    font-size: 20px;
+}
+.primeiraL {
+    margin-top: -10px;
+    margin-left: 50px;
+}
+.Linha {
+    margin-right: 5mm;
+    display: flex;
+    float: right;
+}
+button.grandes{
+    text-align: left;
+    font-size: 22px;
+}
+button{
+    transition: background-color 0.1s;
+    margin-left: 3mm;
+    margin-top: 3mm;
+    height: 75px;
+    width: 75px;
+    font-size: 30px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 50%;
+    border: none;
+    overflow: hidden;
+}
+.laranja{
+    background-color: #f1a33b;
+    color:white;
+}
+.cinzaEscuro{
+    background-color: #212121;
+    color:white;
+}
+.cinza{
+    background-color: #333333;
+    color: white;
+}
+.cinzaClaro{
+    background-color: #a5a5a5;
+    color:black;
+}
+.zero{
+    margin-left: 6mm;
+    width: 150px;
+    border-radius: 40px;
+}
+button:active{background-color: #707070;}
+.laranja:active{background-color: #905507;}
+button:hover{cursor: pointer;}
