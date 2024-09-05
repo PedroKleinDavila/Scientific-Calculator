@@ -281,26 +281,6 @@ function num(i){
     }
     
 }
-//aplica a função do 0 na calculadora
-function num0(){
-    if(!teveOp&&visor.value!=0){
-        operacoes+=0;
-        visor.value+=0;
-    }
-    else if(!teveIgual){
-        operacoes=0;
-        visor.value=0;
-        teveOp=false;
-    }
-    else{
-        visorDeOp.value="";
-        teveIgual=false;
-        teveOp=false;
-        operacoes="";
-        visor.value=0;
-    }
-    
-}
 //coloca um ponto no fim do numero do visor
 function ponto(){
     if(isNaN(operacoes)){
@@ -379,25 +359,27 @@ function verificaParenteses(array){
 //resolve as funções dentro do parenteses, se n tiver resolve o resto da operação
 function resolveParenteses(array){
     if(verificaParenteses(array))
-    {
-        let vetdeIni=new Array();
-        let x=0;
+    {   
         let vetdeFim=new Array();
         let y=0;
+        let j;
         let arrayPar=new Array();
-        for(i=0;i<array.length;i++){
-            if(array[i]=="("){
-                vetdeIni[x]=i;
-                x++;
-            }
-            if(array[i]==")"){
-                vetdeFim[y]=i;
+        for(j=0;j<array.length;j++){
+            if(array[j]==")"){
+                vetdeFim[y]=j;
                 y++;
             }
         }
-        arrayPar=array.slice(vetdeIni[x-1]+1,vetdeFim[0]);
+        let aux;
+        let i=vetdeFim[0];
+        while(array[i]!="("){
+            i--;
+            aux=i;
+        }
+        arrayPar=array.slice(aux+1,vetdeFim[0]);
         arrayPar=recursaoOp(arrayPar);
-        array=[...array.slice(0,vetdeIni[x-1]),...arrayPar,...array.slice(vetdeFim[0]+1,array.length)];
+        array=[...array.slice(0,aux),...arrayPar,...array.slice(vetdeFim[0]+1,array.length)];
+
         return resolveParenteses(array);
     }else{return recursaoOp(array);}
 }
@@ -449,7 +431,8 @@ function resolveOp(ant,suc,op){
             num=ant*suc;
             break;
         case "÷":
-            num=ant/suc;
+            if(suc==0){num="Erro";}
+            else{num=ant/suc;}
             break;  
         case "^":
             num=ant**suc;
