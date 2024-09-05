@@ -7,12 +7,15 @@ let teveIgual=false;
 let lastOp="";
 let memory=0;
 let tevePar=false;
+//altera para funções básicas
 function trocaNormal(){
     window.location.href="Ipad.html";
 }
+//altera para funções secundárias
 function trocaSec(){
     window.location.href="IpadSecond.html";
 }
+//apresenta o número em notação científica
 function EE(){
     let aux;
     let aux1;
@@ -34,6 +37,7 @@ function EE(){
         }
     }
 }
+//verifica se a função tem pontos para a função EE() e a função ponto()
 function ondeTemP(a){
     let aux=-1;
     for (let index = 0; index < a.length; index++) {
@@ -43,9 +47,11 @@ function ondeTemP(a){
     }
     return aux;
 }
+//zera a memória
 function mc(){
     memory=0;
 }
+//soma o número do visor na memória
 function mMais(){
     let aux="";
     if(isNaN(operacoes)){
@@ -58,6 +64,7 @@ function mMais(){
         memory+=Number(operacoes);
     }
 }
+//reduz o número do visor na memória
 function mMenos(){
     let aux="";
     if(isNaN(operacoes)){
@@ -70,16 +77,14 @@ function mMenos(){
         memory-=operacoes;
     }
 }
-function getBaseLog(x,y){
-    return Math.log(y)/Math.log(x);
-}
+//faz as funções logarítmicas log(base i) do numero no visor;
 function log(i){
     let aux="";
     if(isNaN(operacoes)){
         let array=[...operacoes];
         array=numNegativos(unirNum(array));
         if(!isNaN(array[array.length-1])){
-            array[array.length-1]=getBaseLog(i,array[array.length-1]);
+            array[array.length-1]=Math.log(array[array.length-1])/Math.log(i);
             for(i=0;i<array.length;i++){
                 aux+=array[i];
             }
@@ -87,10 +92,11 @@ function log(i){
             visor.value=array[array.length-1];
         }
     }else{
-        operacoes=getBaseLog(i,operacoes);
+        operacoes=Math.log(operacoes)/Math.log(i);
         visor.value=operacoes;
     }
 }
+//retorna funções trigonométricas, rad, número aleatório e número da memória
 function sctRec(a,b){
     switch(b){
         case -1:
@@ -125,6 +131,7 @@ function sctRec(a,b){
             return memory;
     }
 }
+//mostra o resultado da função de sctRec()
 function senCosTgOutros(i){
     teveOp=false;
     let aux="";
@@ -144,11 +151,13 @@ function senCosTgOutros(i){
         visor.value=operacoes;
     }
 }
+//função fatorial recursiva
 function fatRecursiva(x){
     if(x<0){return "Erro";}
     if(x==0||x==1){return 1;}
     return x*fatRecursiva(x-1);
 }
+//retorna fatorial de numero
 function fatorial(){
     let aux="";
     if(isNaN(operacoes)){
@@ -167,6 +176,7 @@ function fatorial(){
         visor.value=operacoes;
     }
 }
+//retorna constantes Pi e Euler
 function constantes(l){
     teveOp=false;
     let aux="";
@@ -194,6 +204,7 @@ function constantes(l){
         visor.value=operacoes;
     }
 }
+//resolve l^x
 function xElevado(l){
     let aux="";
     if(isNaN(operacoes)){
@@ -212,6 +223,7 @@ function xElevado(l){
         visor.value=operacoes;
     }
 }
+//resolve x^l
 function elevado(l){
     let aux="";
     if(isNaN(operacoes)){
@@ -230,6 +242,7 @@ function elevado(l){
         visor.value=operacoes;
     }
 }
+//resolve funções maisoumenos() e percent()
 function multiplicaValor(l){
     let aux="";
     if(isNaN(operacoes)){
@@ -248,12 +261,7 @@ function multiplicaValor(l){
         visor.value=operacoes;
     }
 }
-function abrePar(){
-    op(6);
-}
-function fechaPar(){
-    op(7);
-}
+//aplica a função dos números na calculadora
 function num(i){
     if(!teveOp){
         operacoes+=i;
@@ -273,6 +281,7 @@ function num(i){
     }
     
 }
+//aplica a função do 0 na calculadora
 function num0(){
     if(!teveOp&&visor.value!=0){
         operacoes+=0;
@@ -292,24 +301,30 @@ function num0(){
     }
     
 }
+//coloca um ponto no fim do numero do visor
 function ponto(){
     if(isNaN(operacoes)){
         let array=[...operacoes];
-        if(!isNaN(array[array.length-1])){
+        array=numNegativos(unirNum(array));
+        if(!isNaN(array[array.length-1])&&ondeTemP(array[array.length-1])==-1){
             operacoes+=".";
             visor.value+=".";
         }
     }else{
-        operacoes+=".";
-        visor.value+=".";
+        if(operacoes!=""&&ondeTemP(operacoes)==-1)
+        {operacoes+=".";
+        visor.value+=".";}
     }
 }
+//multiplica o numero do visor por -1
 function maisoumenos(){
     multiplicaValor(-1);
 }
+//multiplica o numero do visor por 0.01
 function percent(){
     multiplicaValor(0.01);
 }
+//reseta todas as informações do código
 function AC(){
     visor.value="";
     visorDeOp.value="";
@@ -320,6 +335,7 @@ function AC(){
     lastOp="";
     tevePar=false;
 }
+//une os numeros positivos com o sinal de negativo no vetor das operações
 function numNegativos(array){
     let arrayFinal;
     if(array[0]=='-'){
@@ -339,6 +355,7 @@ function numNegativos(array){
     }
     return array;
 }
+//retorna o resultado de operações
 function resultado(){
     if(isNaN(operacoes)){
         let array=[...operacoes];
@@ -349,6 +366,7 @@ function resultado(){
     }
     else{return operacoes;}
 }
+//verifica se algum parenteses é iniciado
 function verificaParenteses(array){
     let bol=false;
     for(i=0;i<array.length;i++){
@@ -358,6 +376,7 @@ function verificaParenteses(array){
     }
     return bol;
 }
+//resolve as funções dentro do parenteses, se n tiver resolve o resto da operação
 function resolveParenteses(array){
     if(verificaParenteses(array))
     {
@@ -382,6 +401,7 @@ function resolveParenteses(array){
         return resolveParenteses(array);
     }else{return recursaoOp(array);}
 }
+//resolve todas as operações em ordem de prioridade
 function recursaoOp(array){
     let arrayFinal;
     for(i=1;i<array.length;i++){
@@ -413,6 +433,7 @@ function recursaoOp(array){
     }
     return array;
 }
+//retorna a resolução de cada operação
 function resolveOp(ant,suc,op){
     let num=0;
     ant=Number(ant);
@@ -435,6 +456,7 @@ function resolveOp(ant,suc,op){
     }
     return num;
 }
+//une os números depois de iterar a String operacoes
 function unirNum(array){
     let arrayFinal;
     for(i=1;i<array.length;i++){
@@ -455,6 +477,7 @@ function unirNum(array){
     }
     return array;
 }
+//um switch para adição de operações ao visorDeOp e para a resolução delas
 function op(i){
     switch(i){
         case 0:
@@ -578,6 +601,7 @@ function op(i){
             break;
     }
 }
+//método para reduzir o numero de linhas em op()
 function reduzirOp(){
     teveIgual=false;
     result=resultado();
