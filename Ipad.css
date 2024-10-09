@@ -9,7 +9,7 @@
     height: 174.1mm;
     width: 235.6mm;
 }
-.operacoes{
+.operations{
     overflow: hidden;
     margin-top: 30px;
     border-radius: 30px;
@@ -37,22 +37,22 @@ body{
     user-select:none;
     background-color: #333333;
 }
-#senos{
+#sines{
     font-size: 15px;
 }
 #rad{
     font-size: 20px;
 }
-.primeiraL {
+.firstLine {
     margin-top: -10px;
     margin-left: 50px;
 }
-.Linha {
+.Line {
     margin-right: 5mm;
     display: flex;
     float: right;
 }
-button.grandes{
+button.big{
     text-align: left;
     font-size: 22px;
 }
@@ -69,19 +69,19 @@ button{
     border: none;
     overflow: hidden;
 }
-.laranja{
+.orange{
     background-color: #f1a33b;
     color:white;
 }
-.cinzaEscuro{
+.darkGray{
     background-color: #212121;
     color:white;
 }
-.cinza{
+.gray{
     background-color: #333333;
     color: white;
 }
-.cinzaClaro{
+.lightGray{
     background-color: #a5a5a5;
     color:black;
 }
@@ -91,5 +91,5 @@ button{
     border-radius: 40px;
 }
 button:active{background-color: #707070;}
-.laranja:active{background-color: #905507;}
+.orange:active{background-color: #905507;}
 button:hover{cursor: pointer;}

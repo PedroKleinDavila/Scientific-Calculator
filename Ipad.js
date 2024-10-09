@@ -1,5 +1,5 @@
 const visor = document.getElementById("visor");
-const operationVisor = document.getElementById("visorDeOp");
+const operationVisor = document.getElementById("operationVisor");
 let result = 0;
 let operations = "";
 let operationWasLast = true;
@@ -22,14 +22,14 @@ function EE() {
     let aux2;
     if (equalsWasLast) {
         if (whereDot(operations) == -1) {
-            aux2=Number(operacoes);
-            aux=aux2/(10**(operacoes.length-1));
-            aux1=String(aux)+"×"+"10"+"^"+String(operacoes.length-1);
+            aux2=Number(operations);
+            aux=aux2/(10**(operations.length-1));
+            aux1=String(aux)+"×"+"10"+"^"+String(operations.length-1);
             visor.value=aux1;
             equalsWasLast = false;
         } else {
-            aux2=Number(operacoes);
-            let aux3=ondeTemP(operacoes);
+            aux2=Number(operations);
+            let aux3=ondeTemP(operations);
             aux=aux2/(10**(aux3-1));
             aux1=String(aux)+"×"+"10"+"^"+String(aux3-1);
             visor.value=aux1;
